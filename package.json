@@ -1,0 +1,36 @@
+{
+  "name": "@sgreengolf/ui",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --config demo/vite.config.ts"
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "sideEffects": [
+    "./src/styles.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css"
+  },
+  "dependencies": {
+    "@ark-ui/solid": "^5.37.1",
+    "@sgreengolf/helpers": "github:quanttrinh/frontend-helpers",
+    "@tanstack/solid-virtual": "^3.13.28",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "fuse.js": "^7.0.0",
+    "solid-js": "^1.9.13",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^6.0.3",
+    "vite": "^6.4.3",
+    "vite-plugin-solid": "^2.11.12"
+  }
+}
