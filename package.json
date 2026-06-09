@@ -1,0 +1,33 @@
+{
+  "name": "@sgreengolf/ui",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd demo && bun run dev"
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "sideEffects": [
+    "./src/styles.css"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css"
+  },
+  "peerDependencies": {
+    "@ark-ui/solid": "^5.37.1",
+    "@sgreengolf/helpers": "github:quanttrinh/frontend-helpers",
+    "@tanstack/solid-virtual": "^3.13.30",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "fuse.js": "^7.4.2",
+    "material-icons": "^1.13.14",
+    "solid-js": "^1.9.13",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
