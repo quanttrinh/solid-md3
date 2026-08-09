@@ -86,10 +86,7 @@ export function Select(props: Readonly<SelectProps>): JSX.Element {
           class="z-50"
         >
           <ArkSelect.Content class="box-content flex h-(--total-size) max-h-[min(480px,var(--available-height))] min-h-(--reference-height) w-(--reference-width) flex-col rounded-md3-md border border-md3-outline-variant bg-md3-surface-container py-2 shadow-md3-elevation-3">
-            <div
-              ref={setScrollRef}
-              class="size-full overflow-y-auto"
-            >
+            <div ref={setScrollRef} class="size-full overflow-y-auto">
               <div
                 ref={(el) => {
                   createEffect(() => {

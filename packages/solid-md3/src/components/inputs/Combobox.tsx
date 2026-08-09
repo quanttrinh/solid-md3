@@ -126,10 +126,7 @@ export function Combobox(props: Readonly<ComboboxProps>): JSX.Element {
                 </div>
               }
             >
-              <div
-                ref={setScrollRef}
-                class="size-full overflow-y-auto"
-              >
+              <div ref={setScrollRef} class="size-full overflow-y-auto">
                 <div
                   ref={(el) => {
                     createEffect(() => {
