@@ -10,7 +10,6 @@ import { Index, type JSX, Show, createEffect, createMemo, createSignal } from "s
 import { Portal } from "solid-js/web";
 
 import { cn } from "../../cn";
-import { ScrollArea } from "../containers/ScrollArea";
 import { Text } from "../typography/Text";
 
 const comboboxVariants = cva(
@@ -127,11 +126,9 @@ export function Combobox(props: Readonly<ComboboxProps>): JSX.Element {
                 </div>
               }
             >
-              <ScrollArea
-                class="h-full w-full"
-                scrollbarClass="my-0"
-                viewportRef={setScrollRef}
-                nonce={props.nonce}
+              <div
+                ref={setScrollRef}
+                class="size-full overflow-y-auto"
               >
                 <div
                   ref={(el) => {
@@ -191,7 +188,7 @@ export function Combobox(props: Readonly<ComboboxProps>): JSX.Element {
                     }}
                   </Index>
                 </div>
-              </ScrollArea>
+              </div>
             </Show>
           </ArkCombobox.Content>
         </ArkCombobox.Positioner>
