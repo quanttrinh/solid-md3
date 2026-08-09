@@ -89,7 +89,7 @@ export default function DemoContent(): JSX.Element {
   const [tabVal, setTabVal] = createSignal("tab-1");
 
   return (
-    <div class="flex-1 overflow-y-auto pr-4">
+    <div class="size-full overflow-y-auto">
       <Section id="color-palette" title="Color Palette">
         <Block variant="wrap" gap="sm">
           <div class="rounded-md3-sm bg-md3-primary px-4 py-2 text-sm font-medium text-md3-on-primary">
