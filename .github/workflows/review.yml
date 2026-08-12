@@ -59,6 +59,26 @@ jobs:
             echo "skip=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: React to review command
+        if: github.event_name == 'issue_comment' && steps.skip.outputs.skip != 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api \
+            "repos/${GITHUB_REPOSITORY}/issues/comments/${{ github.event.comment.id }}/reactions" \
+            -F content='eyes'
+
+      - name: React to skipped review command
+        if: github.event_name == 'issue_comment' && steps.skip.outputs.skip == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api \
+            "repos/${GITHUB_REPOSITORY}/issues/comments/${{ github.event.comment.id }}/reactions" \
+            -F content='-1'
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         if: steps.skip.outputs.skip != 'true'
         with:
@@ -246,7 +266,7 @@ jobs:
           PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
         run: gh pr merge "$PR_NUMBER" --auto --squash
 
-      - name: React to review command
+      - name: React to review done
         if: github.event_name == 'issue_comment' && steps.skip.outputs.skip != 'true'
         continue-on-error: true
         env:
@@ -254,5 +274,5 @@ jobs:
         run: |
           gh api \
             "repos/${GITHUB_REPOSITORY}/issues/comments/${{ github.event.comment.id }}/reactions" \
-            -F content='eyes'
+            -F content='+1'
 

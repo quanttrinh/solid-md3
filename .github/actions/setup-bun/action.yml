@@ -44,7 +44,7 @@ runs:
       run: |
         set -euo pipefail
         actual=$(bun --version)
-        expected="${TARGET_VERSION#bun-v}"
+        expected="${{ env.TARGET_VERSION }}"
         case "$actual" in
           "$expected"*) echo "bun $actual OK" ;;
           *)

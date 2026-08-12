@@ -42,6 +42,16 @@ jobs:
         run: |
           echo "pr_number=${{ github.event.pull_request.number || github.event.issue.number }}" >> $GITHUB_OUTPUT
 
+      - name: React to command
+        if: github.event_name == 'issue_comment'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api \
+            "repos/${GITHUB_REPOSITORY}/issues/comments/${{ github.event.comment.id }}/reactions" \
+            -F content='eyes'
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: refs/pull/${{ steps.pr.outputs.pr_number }}/head
@@ -111,4 +121,4 @@ jobs:
         run: |
           gh api \
             "repos/${GITHUB_REPOSITORY}/issues/comments/${{ github.event.comment.id }}/reactions" \
-            -F content='rocket'
+            -F content='+1'

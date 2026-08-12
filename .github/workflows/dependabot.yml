@@ -4,6 +4,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     paths:
+      - .github/**
       - package.json
       - bun.lock
       - packages/*/package.json
@@ -15,10 +16,21 @@ jobs:
   manage:
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-slim
+    outputs:
+      changeset_present: ${{ steps.check.outputs.changeset_present }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.head_ref }}
+
+      - name: Check if changeset commit is already the latest
+        id: check
+        run: |
+          if git log -1 --format='%s' | grep -q '^chore: add changeset'; then
+            echo "changeset_present=true" >> $GITHUB_OUTPUT
+          else
+            echo "changeset_present=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Fetch Dependabot metadata
         id: metadata
@@ -73,7 +85,7 @@ jobs:
 
   review:
     needs: manage
-    if: github.actor == 'dependabot[bot]'
+    if: github.actor == 'dependabot[bot]' && needs.manage.outputs.changeset_present == 'false'
     permissions:
       contents: write
       pull-requests: write
