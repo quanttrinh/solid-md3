@@ -99,10 +99,7 @@ jobs:
           PYEOF
                 ;;
               bun.lock)
-                mv bun.lock bun.lock.pr
-                bun install --lockfile-only
-                cmp -s bun.lock bun.lock.pr || { echo "::error::$f does not match generated"; exit 1; }
-                rm bun.lock.pr
+                bun install --frozen-lockfile --lockfile-only
                 ;;
               .github/workflows/*.yml | .github/workflows/*.yaml \
               | .github/actions/*/action.yml | .github/dependabot.yml)
