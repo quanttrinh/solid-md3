@@ -51,7 +51,7 @@ runs:
         actual=$(opencode --version)
         expected="${{ env.TARGET_VERSION }}"
         case "$actual" in
-          "$expected"*) echo "opencode $actual OK" ;;
+          "$expected") echo "opencode $actual OK" ;;
           *)
             echo "opencode version mismatch: got '$actual', expected '$expected'" >&2
             exit 1

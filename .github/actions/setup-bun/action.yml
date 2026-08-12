@@ -46,7 +46,7 @@ runs:
         actual=$(bun --version)
         expected="${{ env.TARGET_VERSION }}"
         case "$actual" in
-          "$expected"*) echo "bun $actual OK" ;;
+          "$expected") echo "bun $actual OK" ;;
           *)
             echo "bun version mismatch: got '$actual', expected '$expected'" >&2
             exit 1
