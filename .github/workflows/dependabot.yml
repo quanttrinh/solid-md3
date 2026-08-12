@@ -87,7 +87,8 @@ jobs:
     needs: manage
     if: github.actor == 'dependabot[bot]' && needs.manage.outputs.changeset_present == 'false'
     permissions:
-      contents: write
+      contents: read
+      actions: write
       pull-requests: write
       issues: write
     uses: ./.github/workflows/review.yml

@@ -48,7 +48,8 @@ runs:
       shell: bash
       run: |
         set -euo pipefail
-        actual=$(opencode --version)
+        actual=$(opencode --version | head -1)
+        actual="${actual%%+*}"
         expected="${{ env.TARGET_VERSION }}"
         case "$actual" in
           "$expected") echo "opencode $actual OK" ;;
