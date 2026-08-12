@@ -29,7 +29,7 @@ jobs:
         || (inputs.pr_number != '')
         || (github.event_name == 'issue_comment'
           && github.event.issue.pull_request
-          && contains(github.event.comment.body, '@review-pr')
+          && contains(github.event.comment.body, '#review-pr')
           && contains(fromJson('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
       }}
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
         run: |
           gh api \
             "repos/${GITHUB_REPOSITORY}/issues/comments/${{ github.event.comment.id }}/reactions" \
-            -F content='eyes'
+            -f content='eyes'
 
       - name: React to skipped review command
         if: github.event_name == 'issue_comment' && steps.skip.outputs.skip == 'true'
@@ -75,7 +75,7 @@ jobs:
         run: |
           gh api \
             "repos/${GITHUB_REPOSITORY}/issues/comments/${{ github.event.comment.id }}/reactions" \
-            -F content='-1'
+            -f content='-1'
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         if: steps.skip.outputs.skip != 'true'
@@ -281,5 +281,5 @@ jobs:
         run: |
           gh api \
             "repos/${GITHUB_REPOSITORY}/issues/comments/${{ github.event.comment.id }}/reactions" \
-            -F content='+1'
+            -f content='+1'
 
