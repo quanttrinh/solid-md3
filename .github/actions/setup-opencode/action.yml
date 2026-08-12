@@ -17,7 +17,7 @@ runs:
       shell: bash
       run: |
         set -euo pipefail
-        echo "TARGET_VERSION=v1.18.16" >> "$GITHUB_ENV"
+        echo "TARGET_VERSION=1.18.16" >> "$GITHUB_ENV"
         echo "TARGET_SHA=286e07355df06738c1905955be15b7fbc10a7b12d931de9394a6f7597246750b" >> "$GITHUB_ENV"
 
     - name: Restore OpenCode from cache
@@ -31,7 +31,7 @@ runs:
       if: steps.cache.outputs.cache-hit != 'true'
       uses: ./.github/actions/download-file
       with:
-        url: https://github.com/anomalyco/opencode/releases/download/${{ env.TARGET_VERSION }}/opencode-linux-x64.tar.gz
+        url: https://github.com/anomalyco/opencode/releases/download/v-${{ env.TARGET_VERSION }}/opencode-linux-x64.tar.gz
         sha256: ${{ env.TARGET_SHA }}
         output: /tmp/opencode.tar.gz
         token: ${{ inputs.token }}
