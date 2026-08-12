@@ -31,7 +31,7 @@ runs:
       if: steps.cache.outputs.cache-hit != 'true'
       uses: ./.github/actions/download-file
       with:
-        url: https://github.com/anomalyco/opencode/releases/download/v-${{ env.TARGET_VERSION }}/opencode-linux-x64.tar.gz
+        url: https://github.com/anomalyco/opencode/releases/download/v${{ env.TARGET_VERSION }}/opencode-linux-x64.tar.gz
         sha256: ${{ env.TARGET_SHA }}
         output: /tmp/opencode.tar.gz
         token: ${{ inputs.token }}
