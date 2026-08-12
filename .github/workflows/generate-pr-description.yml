@@ -15,9 +15,9 @@ jobs:
   generate:
     if: >-
       ${{
-        github.event.issue.pull_request &&
-        contains(github.event.comment.body, '@generate-pr-description') &&
-        contains(
+        github.event.issue.pull_request
+        && contains(github.event.comment.body, '@generate-pr-description')
+        && contains(
           fromJson('["OWNER","MEMBER","COLLABORATOR"]'),
           github.event.comment.author_association
         )
@@ -28,7 +28,7 @@ jobs:
       pull-requests: write
       issues: write
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: refs/pull/${{ github.event.issue.number }}/head
           persist-credentials: false
