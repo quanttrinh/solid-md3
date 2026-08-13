@@ -35,7 +35,11 @@
       "solid": "./src/index.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": {
+      "style": "./src/styles.css",
+      "solid": "./src/styles.css",
+      "default": "./dist/styles.css"
+    }
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
